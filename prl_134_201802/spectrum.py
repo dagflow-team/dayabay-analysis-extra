@@ -124,12 +124,13 @@ def main(args: Namespace) -> None:
     axs[0].stairs(data_like_yield, DEFAULT_EDGES, label="model")
     axs[0].stairs(prl_data["y"], DEFAULT_EDGES, label="official", linestyle="-.")
 
-    axs[0].errorbar(y=data_like_yield, x=centers, linestyle="none", xerr=widths / 2, yerr=data_like_yield_error, color="C2")
+    axs[0].scatter(y=data_like_yield, x=centers, s=5, marker="s", color="C2")
     axs[0].errorbar(y=prl_data["y"], x=centers, linestyle="none", xerr=widths / 2, yerr=prl_data["ey"], color="C3")
 
-    axs[1].errorbar(y=ratio - 1.0, x=centers, xerr=widths / 2, yerr=ratio_err, linestyle="none")
+    axs[1].scatter(y=ratio - 1.0, x=centers)
     axs[1].hlines(0, 12, -1, color="black", alpha=0.5, linestyle="--")
     axs[1].set_xlim(0.6, 8.1)
+    axs[1].set_ylim(-4e-3, 9e-3)
     axs[1].set_xlabel("Reconstructed energy [MeV]")
     axs[1].set_ylabel("official / model - 1")
     axs[0].set_ylabel(r"$\times 10^{-43}\text{cm}^2/\text{fission}/\text{MeV}$")
